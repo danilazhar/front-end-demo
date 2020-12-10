@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started with Front-End Demo React App
 This front-end project was created using React Js.\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
