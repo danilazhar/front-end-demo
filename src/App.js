@@ -31,7 +31,7 @@ const App = () => {
         try {
             let res = await axios.post(`http://localhost:8081/users`, user);
             if (res.status === 200) {
-                setData([...data, user])
+                setData([...data, {...user, _id: res.data.item._id}]);
             }
         } catch (err) {
             console.log(err);
