@@ -2,6 +2,8 @@
 This front-end project was created using React Js.\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Please run `npm install` after project was cloned.
+
 ## Available Scripts
 
 In the project directory, you can run:
