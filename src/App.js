@@ -4,6 +4,7 @@ import AddUserForm from './forms/AddUserForm';
 import EditUserForm from './forms/EditUserForm'
 import axios from "axios";
 import cloneDeep from "lodash.clonedeep";
+require('dotenv')
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
 
     React.useEffect(() => {
         const fetchData = async () => {
-            let url = `http://localhost:8081/users`;
+            let url = `${process.env.REACT_APP_API_URL}/users`;
             try {
                 const res = await axios.get(url);
                 setData(res.data.users);
@@ -29,7 +30,7 @@ const App = () => {
 
     async function addUser(user) {
         try {
-            let res = await axios.post(`http://localhost:8081/users`, user);
+            let res = await axios.post(`${process.env.REACT_APP_API_URL}/users`, user);
             if (res.status === 200) {
                 setData([...data, {...user, _id: res.data.item._id}]);
             }
@@ -40,12 +41,12 @@ const App = () => {
 
     const editRow = (user) => {
         setEditing(true);
-        setCurrentUser({_id: user._id, name: user.name, email: user.email, skillSets: user.skillSets, hobby: user.hobby});
+        setCurrentUser({_id: user._id, name: user.name, email: user.email, phone: user.phone, skillSets: user.skillSets, hobby: user.hobby});
     }
 
     async function updateUser(id, updatedUser) {
         setEditing(false)
-        let res = await axios.put(`http://localhost:8081/users/${id}`, updatedUser);
+        let res = await axios.put(`${process.env.REACT_APP_API_URL}/users/${id}`, updatedUser);
         if (res.status === 200) {
             let tmpData = cloneDeep(data);
             let index = tmpData.findIndex(data => data._id === id);
@@ -55,7 +56,7 @@ const App = () => {
     }
 
     async function deleteUser(id) {
-        let res = await axios.delete(`http://localhost:8081/users/${id}`);
+        let res = await axios.delete(`${process.env.REACT_APP_API_URL}/users/${id}`);
         if (res.status === 200) {
             let tmpData = cloneDeep(data);
             let index = tmpData.findIndex(data => data._id === id);
